@@ -6,7 +6,6 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import joel.tellez.com.tasteslike.models.Review;

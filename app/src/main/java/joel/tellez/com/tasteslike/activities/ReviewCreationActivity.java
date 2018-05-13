@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Action;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import joel.tellez.com.tasteslike.R;
@@ -81,6 +81,21 @@ public class ReviewCreationActivity extends AppCompatActivity {
                             @Override
                             public void accept(Integer reviewCount) throws Exception {
                                 Toast.makeText(getApplicationContext(), String.format("There are %d reviews", reviewCount), Toast.LENGTH_LONG).show();
+                            }
+                        }));
+            }
+        });
+
+        binding.deleteReviewsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeDisposable.add(viewModel.deleteAllReviews()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                Toast.makeText(getApplicationContext(), String.format("All gone..."), Toast.LENGTH_LONG).show();
                             }
                         }));
             }

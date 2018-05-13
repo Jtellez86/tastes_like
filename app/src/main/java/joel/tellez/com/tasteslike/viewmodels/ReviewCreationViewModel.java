@@ -2,7 +2,6 @@ package joel.tellez.com.tasteslike.viewmodels;
 
 
 import android.arch.lifecycle.ViewModel;
-import android.util.Log;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -10,6 +9,7 @@ import java.util.concurrent.Callable;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
+import io.reactivex.functions.Action;
 import joel.tellez.com.tasteslike.models.Review;
 import joel.tellez.com.tasteslike.persistence.ReviewDataSource;
 
@@ -34,9 +34,20 @@ public class ReviewCreationViewModel extends ViewModel {
         });
     }
 
-//    public Completable deleteAllReviews() {
-//        return dataSource.deleteAllReviews();
-//    }
+    public Completable deleteAllReviews() {
+    return Completable.fromAction(new Action() {
+        @Override
+        public void run() throws Exception {
+            dataSource.deleteAllReviews();
+        }
+    });
+        //        return Single.fromCallable(new Callable<Integer>() {
+//            @Override
+//            public Integer call() throws Exception {
+//                return dataSource.deleteAllReviews();
+//            }
+//        });
+    }
 
     public Single<Integer> getReviewCount() { return dataSource.getCount(); }
 }

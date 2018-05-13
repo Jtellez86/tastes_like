@@ -5,10 +5,6 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import org.joda.time.DateTime;
-
-import static org.joda.time.DateTimeZone.UTC;
-
 @Entity(tableName = "review")
 public class Review {
 
