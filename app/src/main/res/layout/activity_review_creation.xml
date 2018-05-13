@@ -1,34 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/fab_margin">
 
+        <Spinner
+            android:id="@+id/template_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/title_input_layout">
+        </Spinner>
+
+        <!--<android.support.constraint.Barrier-->
+            <!--android:id="@+id/barrier1"-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:barrierDirection="bottom"-->
+            <!--app:constraint_referenced_ids=""-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/title_input_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fab_margin"
+            app:layout_constraintTop_toBottomOf="@id/template_spinner">
 
             <EditText
                 android:id="@+id/titleEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:ems="10"
                 android:hint="@string/title"
-                android:inputType="textCapWords"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/createReviewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="@string/create_review_button_text"
             app:layout_constraintTop_toBottomOf="@id/title_input_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@string/review_count_button_text" />
+            app:layout_constraintBottom_toTopOf="@+id/getReviewCountButton"/>
 
         <Button
             android:id="@+id/getReviewCountButton"
@@ -36,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="@string/review_count_button_text"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf=""
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/deleteReviewsButton" />
 

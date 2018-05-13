@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -51,6 +52,13 @@ public class ReviewCreationActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.review_templates_array, R.layout.support_simple_spinner_dropdown_item);
+        binding.templateSpinner.setAdapter(adapter);
+        setUpButtonListeners();
+
+    }
+
+    private void setUpButtonListeners() {
         binding.createReviewButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +108,6 @@ public class ReviewCreationActivity extends AppCompatActivity {
                         }));
             }
         });
-
     }
 
     @Override

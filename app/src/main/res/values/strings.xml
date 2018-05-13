@@ -5,4 +5,9 @@
     <string name="review_count_button_text">Review Count</string>
     <string name="review_delete_button_text">Delete EVERYTHING</string>
     <string name="title">Title</string>
+
+    <string-array name="review_templates_array">
+        <item>Ramen</item>
+        <item>French Fries</item>
+    </string-array>
 </resources>
