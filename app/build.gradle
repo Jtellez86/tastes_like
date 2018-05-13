@@ -2,13 +2,19 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+
     defaultConfig {
         applicationId "joel.tellez.com.tasteslike"
         minSdkVersion 26
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -27,6 +33,19 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:design:26.1.0'
+
+    implementation "android.arch.lifecycle:viewmodel:" + rootProject.archViewModelVersion
+
+    implementation 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion
+    annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion
+    implementation 'android.arch.persistence.room:rxjava2:1.1.0-rc1'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
     implementation 'joda-time:joda-time:2.9.9'
+
     testImplementation 'junit:junit:4.12'
 }
